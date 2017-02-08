@@ -4,19 +4,6 @@ const SocketServer = require('ws').Server;
 // Set the port to 4000
 const PORT = 4000;
 
-const messages = [
-    {
-      id: "1",
-      username: "Bob",
-      content: "Has anyone seen my marbles?",
-    },
-    {
-      id: "2",
-      username: "Anonymous",
-      content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-    }
-  ]
-
 // Create a new express server
 const server = express()
    // Make the express server serve static assets (html, javascript, css) from the /public folder
@@ -31,7 +18,10 @@ const wss = new SocketServer({ server });
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
   console.log('Client connected');
-  ws.send(JSON.stringify(messages))
+  ws.on('message', (message) => {
+    let receiveMessage = JSON.parse(message)
+    console.log(uuid.v1(), receiveMessage.username, receiveMessage.content)
+  })
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));
 });
