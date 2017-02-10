@@ -24,14 +24,31 @@ wss.broadcast = (receivedMessage) => {
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
+let numberUsers = 0;
+
 wss.on('connection', (ws) => {
-  console.log('Client connected');
+  numberUsers ++
+  wss.broadcast(JSON.stringify({type: "numberOfUsers", numberUsers:numberUsers}))
+  // console.log(numberUsers);
+  // console.log('Client connected');
   ws.on('message', (message) => {
-    console.log(message);
     let receivedMessage = JSON.parse(message)
-    wss.broadcast(JSON.stringify(receivedMessage));
+    switch(receivedMessage.type) {
+      case "postMessage":
+        receivedMessage.type = "incomingMessage"
+        wss.broadcast(JSON.stringify(receivedMessage));
+        break;
+      case "postNotification":
+        receivedMessage.type = "incomingNotification"
+        wss.broadcast(JSON.stringify(receivedMessage));
+        break;
+      default:
+      }
   })
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-  ws.on('close', () => console.log('Client disconnected'));
+  ws.on('close', () => {
+    // console.log('Client  disconnected')
+    numberUsers --
+  });
 });

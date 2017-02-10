@@ -13,10 +13,17 @@ nav {
   padding: 8px;
   border-bottom: 1px solid black;
   background-color: tomato;
+  display: flex;
 }
 
 nav h1 {
+  // flex: 0 0 auto;
   margin: 0;
+}
+
+nav span {
+  justify-content: right;
+
 }
 
 #message-list {
@@ -24,8 +31,10 @@ nav h1 {
   padding: 16px 8px;
 }
 
-#message-list .message { padding: 4px 0;
+#message-list .message {
+  padding: 4px 0;
   display: flex;
+  font-style: italic;
 }
 
 #message-list .message .username,#message-list .message .content {
@@ -38,6 +47,7 @@ nav h1 {
   margin-right: 16px;
   overflow: hidden;
   font-weight: 700;
+  font-style: normal;
 }
 
 #message-list .message .content {
@@ -46,7 +56,6 @@ nav h1 {
 
 #message-list .message.system {
   font-weight: 400;
-  font-style: italic;
 }
 
 footer {
