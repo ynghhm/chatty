@@ -12,16 +12,23 @@ nav {
   height: 40px;
   padding: 8px;
   border-bottom: 1px solid black;
-  background-color: tomato;
+  background-color: #87CEEB;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
 }
 
 nav h1 {
   margin: 0;
+  justify-content: flex-start;
 }
 
 nav span {
-  margin-left: 870px;
+  justify-content: flex-end;
+  font-size: 125%;
+  align-content: center;
 
 }
 
@@ -60,7 +67,7 @@ nav span {
 footer {
   height: 41px;
   border-top: 1px solid black;
-  background-color: tomato;
+  background-color: #87CEEB;
   display: flex; align-items: center;
 }
 
