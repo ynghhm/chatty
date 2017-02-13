@@ -15,7 +15,6 @@ class MessageList extends Component {
                 <div className="message" key={index}>
                   <span className="username">{message.username}</span>
                   <span className="content">{message.content}</span>
-                  }
                 </div>
               );
             })

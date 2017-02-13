@@ -6,7 +6,7 @@ import ChatBar from './ChatBar.jsx';
 import uuid from 'node-uuid';
 
 var people = {
-  currentUser: "",
+  currentUser: "Anonymous",
   messages: []
 }
 
@@ -48,7 +48,7 @@ class App extends Component {
   postMessage = (textEntered, ev) => {
     const newMessage = {type: 'postMessage', id:uuid.v4(), username: this.state.currentUser, content: textEntered}
     // console.log(newMessage)
-    if (ev.key === 'Enter' && textEntered.length > 0 && this.state.currentUser != "") {
+    if (ev.key === 'Enter' && textEntered.length > 0 && this.state.currentUser != "Anonymous") {
       ev.target.value='';
       this.connectSocket.send(JSON.stringify(newMessage));
     }
